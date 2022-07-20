@@ -1,0 +1,49 @@
+//HomePage
+h1 {
+    text-align: center;
+}
+.page {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.ant-layout-header {
+    line-height: 0 !important;
+}
+.antd-menu {
+    justify-content: space-between;
+}
+.ant-select {
+    display: flex !important;
+}
+
+#gameCanvas {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+.text-sprite {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.hud {
+    position: fixed;
+}
+.health-wrapper {
+    bottom: 5px;
+    background-color: white;
+}
+.health-div {
+    width: 250px;
+    height: 25px;
+}
+.name {
+    text-align: center;
+}
+//CSS Utils
+.z-index{
+    z-index: 101;
+}
+.fixed{
+    position: fixed;
+}
