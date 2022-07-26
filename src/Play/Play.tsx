@@ -5,7 +5,15 @@ export default function Play() {
 
     const navigate = useNavigate();
 
-    const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
+    const pToken = window.localStorage["p_token"]
+
+    if (!pToken) 
+    {
+        navigate("/");
+    }
+
+    const { unityProvider, sendMessage, addEventListener, removeEventListener, loadingProgression, isLoaded } = 
+    useUnityContext({
         loaderUrl: "unity/Build.loader.js",
         dataUrl: "unity/Build.data",
         frameworkUrl: "unity/Build.framework.js",
@@ -14,11 +22,8 @@ export default function Play() {
     
     const loadingPercentage = Math.round(loadingProgression * 100);
 
-    if (!window.localStorage["p_token"]) 
-    {
-        navigate("/");
-    }
-
+    sendMessage("Auth", "SetPToken", pToken);
+    
     return (
         <div className="container">
             {isLoaded === false && (
