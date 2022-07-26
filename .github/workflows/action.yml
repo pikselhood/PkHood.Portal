@@ -14,36 +14,41 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
+            - name: git sumbodule update
+              run: |
+                git pull --recurse-submodules
+                git submodule update --remote --recursive
+
             - name: docker login
               run: |
-                  echo $CR_PAT | docker login $CI_REGISTRY -u ${{ github.run_id }} --password-stdin
+                echo $CR_PAT | docker login $CI_REGISTRY -u ${{ github.run_id }} --password-stdin
 
             - name: docker build
               run: |
-                  docker build . --tag $IMAGE_URL
+                docker build . --tag $IMAGE_URL
 
             - name: docker push
               run: |
-                  docker push $IMAGE_URL
+                docker push $IMAGE_URL    
 
-    # Deploy:
-    #     needs: build
-    #     runs-on: ubuntu-latest
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
 
-    #     steps:
-    #         - uses: actions/checkout@v2
+        steps:
+            - uses: actions/checkout@v2
 
-    #         - name: Deploy in EC2
-    #           env:
-    #               RSA_PRIVATE_KEY: ${{ secrets.AWS_RSA_PRIVATE_KEY  }}
-    #               ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID  }}
+            - name: Deploy in EC2
+              env:
+                  RSA_PRIVATE_KEY: ${{ secrets.AWS_RSA_PRIVATE_KEY  }}
+                  ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID  }}
 
-    #           run: |
-    #               echo "$RSA_PRIVATE_KEY" > private_key && chmod 600 private_key
-    #               ssh -o StrictHostKeyChecking=no -i private_key $ACCESS_KEY_ID '
-    #                 #Now we have got the access of EC2 and we will start the deploy .
-    #                 sudo docker rm -vf $(sudo docker ps -a -q)
-    #                 sudo docker rmi -f $(sudo docker images -a -q)
-    #                 sudo docker pull "'$IMAGE_URL'" 
-    #                 sudo docker run -d -p 80:3000 --name=client $(sudo docker images -a -q)
-    #               '
+              run: |
+                  echo "$RSA_PRIVATE_KEY" > private_key && chmod 600 private_key
+                  ssh -o StrictHostKeyChecking=no -i private_key $ACCESS_KEY_ID '
+                    #Now we have got the access of EC2 and we will start the deploy .
+                    sudo docker rm -vf $(sudo docker ps -a -q)
+                    sudo docker rmi -f $(sudo docker images -a -q)
+                    sudo docker pull "'$IMAGE_URL'" 
+                    sudo docker run -d -p 80:3000 --name=client $(sudo docker images -a -q)
+                  '
