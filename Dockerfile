@@ -6,9 +6,8 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
 
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y git
+RUN apk update && \
+    apk add git
     
 RUN npm install -g serve && \
     npm install && \ 
