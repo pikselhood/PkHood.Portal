@@ -6,9 +6,7 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
 
-RUN npm install -g serve && 
-    npm install && 
-    npm run build
+RUN npm install -g serve && npm install && npm run build
     
 #RUN npm install -g serve
 #RUN npm install
