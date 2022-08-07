@@ -13,6 +13,8 @@ jobs:
             CI_REGISTRY: ghcr.io
         steps:
             - uses: actions/checkout@v2
+              with:
+                submodules: 'true'
 
             - name: git sumbodule update
               run: |
