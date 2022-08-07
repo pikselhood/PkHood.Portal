@@ -13,11 +13,16 @@ jobs:
             CI_REGISTRY: ghcr.io
         steps:
             - uses: actions/checkout@v2
+              with:
+                submodules: 'true'
+                token: ${{ secrets.CR_PAT }}
 
-            - name: git sumbodule update
-              run: |
-                git pull --recurse-submodules
-                git submodule update --remote --recursive
+#             - name: git sumbodule update
+#               run: |
+#                 git pull --recurse-submodules
+#                 git submodule update --remote --recursive
+#                 npm i ncp
+#                 node copy-build-files.js
 
             - name: docker login
               run: |

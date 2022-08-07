@@ -1,18 +1,14 @@
-FROM node:latest
+FROM node:16.13.2-alpine
 
 WORKDIR /app
-
-RUN npm i ncp
 
 COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
 
-RUN git submodule update --init --recursive
-
-RUN node copy-build-files.js
-
-RUN npm install -g serve
+RUN npm install -g serve && npm install && npm run build
+    
+#RUN npm install -g serve
 #RUN npm install
 #RUN npm run build
 
