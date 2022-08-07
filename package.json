@@ -6,8 +6,8 @@
     "@seregpie/three.text-sprite": "^3.2.0",
     "antd": "^4.17.4",
     "axios": "^0.24.0",
-    "ncp": "2.0.0",
     "dotenv": "^11.0.0",
+    "ncp": "2.0.0",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "node copy-build-files.js && react-scripts build",
+    "build": "git submodule update --remote --recursive && node copy-build-files.js && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
