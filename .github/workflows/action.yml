@@ -18,6 +18,8 @@ jobs:
               run: |
                 git pull --recurse-submodules
                 git submodule update --remote --recursive
+                npm i ncp
+                node copy-build-files.js
 
             - name: docker login
               run: |
