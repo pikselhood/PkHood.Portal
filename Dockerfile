@@ -2,11 +2,13 @@ FROM node:16.13.2-alpine
 
 WORKDIR /app
 
+RUN npm i ncp
+
 COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
 
-RUN npm install -g serve ncp && npm run build
+RUN npm install -g serve && npm run build
 #RUN npm install -g serve
 #RUN npm install
 #RUN npm run build
