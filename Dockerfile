@@ -2,11 +2,14 @@ FROM node:latest
 
 WORKDIR /app
 
+RUN npm i ncp
+
 COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
 
-RUN npm i ncp
+RUN git submodule update --init --recursive
+
 RUN node copy-build-files.js
 
 RUN npm install -g serve
