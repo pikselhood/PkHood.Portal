@@ -6,16 +6,14 @@ COPY ["package.json", "package-lock.json*", "./"]
 
 COPY . .
 
-RUN apk update && \
-    apk add git
+# RUN apk update && \
+#     apk add git
     
-RUN npm install -g serve && \
-    npm install && \ 
-    npm run build
-    
-#RUN npm install -g serve
-#RUN npm install
-#RUN npm run build
+# RUN npm install -g serve && \
+#     npm install && \ 
+#     npm run build
+
+RUN npm install -g serve
 
 CMD [ "serve", "-s" , "build", "-l", "3000" ]
 
