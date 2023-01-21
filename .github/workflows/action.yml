@@ -26,17 +26,17 @@ jobs:
 #                 npm i ncp
 #                 node copy-build-files.js
 
-            - name: docker login
-              run: |
-                echo $CR_PAT | docker login $CI_REGISTRY -u ${{ github.run_id }} --password-stdin
+#             - name: docker login
+#               run: |
+#                 echo $CR_PAT | docker login $CI_REGISTRY -u ${{ github.run_id }} --password-stdin
 
-            - name: docker build
-              run: |
-                docker build . --tag $IMAGE_URL
+#             - name: docker build
+#               run: |
+#                 docker build . --tag $IMAGE_URL
 
-            - name: docker push
-              run: |
-                docker push $IMAGE_URL    
+#             - name: docker push
+#               run: |
+#                 docker push $IMAGE_URL    
 
     deploy:
         needs: build
@@ -55,7 +55,7 @@ jobs:
                 ssh -o StrictHostKeyChecking=no -i private_key $ACCESS_KEY_ID '
                 
                     #Now we have got the access of VM and we will start the deploy .
-                    echo "'$CR_PAT'" | sudo docker login "'$CI_REGISTRY'" -u ${{ github.run_id }} --password-stdin
+                    echo "'$CR_PAT'" | sudo docker login "'$CI_REGISTRY'" -u ${{ github.repository_owner }} --password-stdin
                     sudo docker rm -vf "'$DOCKER_TAG'"
                     sudo docker image prune -af
                     sudo docker pull "'$IMAGE_URL'" 
