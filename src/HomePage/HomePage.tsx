@@ -48,7 +48,7 @@ export default function HomePage() {
                         googleIdToken
                 )
                 .then((res) => {
-                    userLoginSuccess(res.data.pToken);
+                    userLoginSuccess(res.data.PToken);
                 })
                 .catch(_ => {
                     axios
