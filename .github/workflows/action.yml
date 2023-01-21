@@ -18,24 +18,24 @@ jobs:
                 submodules: 'true'
                 token: ${{ secrets.CR_PAT }}
 
-#             - name: git sumbodule update
-#               run: |
-#                 git pull --recurse-submodules
-#                 git submodule update --remote --recursive
-#                 npm i ncp
-#                 node copy-build-files.js
+            - name: git sumbodule update
+              run: |
+                git pull --recurse-submodules
+                git submodule update --remote --recursive
+                npm i ncp
+                node copy-build-files.js
 
-#             - name: docker login
-#               run: |
-#                 echo $CR_PAT | docker login $CI_REGISTRY -u ${{ github.run_id }} --password-stdin
+            - name: docker login
+              run: |
+                echo $CR_PAT | docker login $CI_REGISTRY -u ${{ github.run_id }} --password-stdin
 
-#             - name: docker build
-#               run: |
-#                 docker build . --tag $IMAGE_URL
+            - name: docker build
+              run: |
+                docker build . --tag $IMAGE_URL
 
-#             - name: docker push
-#               run: |
-#                 docker push $IMAGE_URL    
+            - name: docker push
+              run: |
+                docker push $IMAGE_URL    
 
     deploy:
         needs: build
