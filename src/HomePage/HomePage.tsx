@@ -44,7 +44,7 @@ export default function HomePage() {
         googleIdToken &&
             axios
                 .get(
-                    "http://3.140.210.21:5000/user/authorize?googleIdToken=" +
+                    "http://20.120.33.143:5000/user/authorize?googleIdToken=" +
                         googleIdToken
                 )
                 .then((res) => {
@@ -52,7 +52,7 @@ export default function HomePage() {
                 })
                 .catch(_ => {
                     axios
-                        .post("http://3.140.210.21:5000/user/create", {
+                        .post("http://20.120.33.143:5000/user/create", {
                             googleIdToken: googleIdToken,
                         })
                         .then((res) => {
