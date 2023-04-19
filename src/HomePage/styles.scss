@@ -2,7 +2,7 @@
 h1 {
     text-align: center;
 }
-.play {
+.page {
     margin-top: 15px;
     display: flex;
     justify-content: space-around;
@@ -46,4 +46,20 @@ h1 {
 }
 .fixed{
     position: fixed;
+}
+
+//Game UI
+.game-UI{ // make react DOM absolute so it will not effect Game Canvas
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.health-bar-wrapper{
+    height: 75px;
+    width: 200px;
+    bottom: 5px;
+    left: 50%;
+    margin-left: -100px;
+    background-color: White;
+    border: 1px solid;
 }

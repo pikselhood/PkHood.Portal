@@ -1,7 +1,8 @@
 import { Component } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+//import Client from "./Game/Client";
 import HomePage from "./HomePage/HomePage";
-import Play from "./Play/Play";
+import ReactGameRunner from "./ReactGameRunner";
 
 class App extends Component {
     componentDidMount() {}
@@ -9,7 +10,7 @@ class App extends Component {
         return (
             <Router>
                 <Routes>
-                    <Route path="/play" element={<Play />} />
+                    <Route path="/play" element={<ReactGameRunner />} />
                     <Route path="/" element={<HomePage />} />
                 </Routes>
             </Router>
